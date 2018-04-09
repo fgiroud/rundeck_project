@@ -2,7 +2,7 @@
   <job>
     <context>
       <options preserveOrder='true'>
-        <option name='sleepFor' value='10' />
+        <option name='sleepFor' value='20' />
         <option name='stopAfter' value='60' />
       </options>
     </context>
