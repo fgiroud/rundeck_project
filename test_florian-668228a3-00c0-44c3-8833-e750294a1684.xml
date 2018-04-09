@@ -1,0 +1,52 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='sleepFor' value='2' />
+        <option name='stopAfter' value='60' />
+      </options>
+    </context>
+    <description></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>false</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <id>668228a3-00c0-44c3-8833-e750294a1684</id>
+    <loglevel>INFO</loglevel>
+    <multipleExecutions>true</multipleExecutions>
+    <name>test_florian</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>aws8node</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <script><![CDATA[start_time="$(date -u +%s)"
+stopAfter=@option.stopAfter@
+sleepFor=@option.sleepFor@
+
+keepRunning=true
+while [ "$keepRunning" = "true" ]; do 
+	end_time="$(date -u +%s)"
+	elapsed="$(($end_time-$start_time))"
+	echo "I am not finished, running since $elapsed seconds"
+	if [ $elapsed -gt $stopAfter ]
+	then
+	keepRunning=false
+	fi
+	sleep $sleepFor
+done
+
+echo "Processing finished after $elapsed seconds"]]></script>
+        <scriptargs>20 2</scriptargs>
+      </command>
+    </sequence>
+    <uuid>668228a3-00c0-44c3-8833-e750294a1684</uuid>
+  </job>
+</joblist>
